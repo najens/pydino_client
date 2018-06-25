@@ -31,9 +31,9 @@ function mapStateToProps ({ teams }) {
   const filterAndSortGroup = (teams, grp) => {
     const groupIds = Object.keys(teams)
       .filter((a) => teams[a].group.includes(grp))
-      .sort((a,b) => teams[b].Pts - teams[a].Pts)
+      .sort((a,b) => teams[b].GF - teams[a].GF)
     groupIds.sort((a,b) => teams[b].GD - teams[a].GD)
-    groupIds.sort((a,b) => teams[b].GF - teams[a].GF)
+    groupIds.sort((a,b) => teams[b].Pts - teams[a].Pts)
     return groupIds
   }
   const groupAIds = filterAndSortGroup(teams, 'A')
