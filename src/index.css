@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* div.mdl-layout__drawer > nav.mdl-navigation > a.mdl-navigation__link {
+    display: inline-flex;
+    vertical-align: middle;
+} */
+.black {
+  color: #000;
+}
+
+/* Header */
+.title {
+  margin-left: 0.8rem;
+  margin-right: 1.4rem;
+  font-size: 1.4rem;
+  font-family: 'Arial', sans-serif;
+  color: #ffe697;
+}
+.profile-pic {
+    width: 50px;
+    height: 50px;
+}
+
+/* Login and Sign up Components */
+.login-icon {
+  font-size: 1.2rem;
+  vertical-align: text-bottom;
+  margin-right: 10px;
+}
+.btn-facebook {
+  background: #4267b2;
+  color: #fff;
+}
+.btn-facebook:hover {
+  background: #365596;
+}
+.btn-google {
+  background: #4285f4;
+  color: #fff;
+}
+.btn-google:hover {
+  background: #266de4;
+}
+.btn-primary {
+  background: #3773a1;
+}
+.btn-primary:disabled {
+  background: #155a8f;
+}
+.btn-primary:hover {
+  background: #155a8f;
+}
+.btn-primary:active {
+  background: #155a8f;
+}
+/* .form-control:focus {
+  border-color: #5593c4;
+} */
+
+
+
+/* Loading Spinner */
+.loader {
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #3498db;
+  width: 2rem;
+  height: 2rem;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-fixed,
+.loading-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.loadingContainer {
+  z-index: 10;
+}
+
+.loading-btn-container {
+    position: relative;
+    width: 100%;
+    height: 2.5rem;
+}
+.login-img {
+    height: 30px;
+    width: auto;
+}
+
+/* Navigation */
+.option-group > a.list-group-item,
+.option-group > a.list-group-item.active,
+.option-group > a.list-group-item.active:hover,
+.option-group > a.list-group-item.active:focus {
+    color: #000;
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.125);
+}
+
+.bottom-nav {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #eee;
+    z-index: 5;
+}

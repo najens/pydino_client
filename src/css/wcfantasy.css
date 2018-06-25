@@ -1,0 +1,156 @@
+/* Shared */
+.pm-dark {
+	color: #01579b;
+}
+.pg-margin {
+	margin-top: 5rem;
+	margin-bottom: 2rem;
+}
+.text-left {
+	text-align: left;
+}
+
+/* Options */
+.logo-container {
+	margin-left: calc(-1.6rem + -27.198px);
+}
+
+/* Bracket */
+.group-heading {
+	padding: 0.75rem 1.25rem;
+}
+.flag-container {
+	width: 5rem;
+  height: 3.85rem;
+  padding: 1px;
+	margin: 0 0.4rem;
+	background: #eee;
+  border: 1px solid #000;
+}
+.flag-text {
+	font-size: 0.8rem;
+}
+.flag {
+	width: 5rem;
+	height: auto;
+}
+.pick-container {
+	width: 100%;
+	padding: 0 1.5rem;
+	height: 5rem;
+}
+.rank {
+	width: 15%;
+}
+.team {
+	font-size: 1.5rem;
+	text-align: center;
+	vertical-align: middle;
+	width: 50%;
+	height: 3.75rem;
+	background: #0288d1;
+	border: 1px solid #0288d1;
+	border-radius: 4px;
+	color: #eee;
+}
+.back-arrow {
+	font-size: 1.6rem;
+	margin: 1rem 0;
+}
+
+/* Standings */
+.flag-standings {
+	width: 2rem;
+	height: 1.5rem;
+	border: 1px solid #ddd;
+}
+.st-team {
+	width: 60%;
+	text-align: left;
+}
+.st-score-hd {
+	font-size: 0.9rem;
+}
+.st-col {
+	width: 12.5%;
+}
+.st-heading {
+	text-align: left;
+}
+
+/* Matches */
+.gm-team-ct {
+	width: 70%;
+}
+.gm-team {
+	width: 70%;
+}
+.gm-heading {
+	text-align: left;
+}
+
+/* Menu */
+.mn-nav-btn {
+	padding: 14px;
+	text-align: left;
+}
+.mn-header {
+	background: #37474f;
+	color: #eee;
+	height: 4rem;
+	width: 100%;
+	position: fixed;
+	z-index: 20;
+	top: 0;
+	left: 0;
+}
+.mn-logo {
+	width: 2.5rem;
+	height: 2.5rem;
+}
+.nav-item {
+	font-size: 1rem;
+}
+.nav-item a:hover {
+	color: #cfd8dc;
+}
+
+/* Leaderboard */
+.profile-pic {
+	width: 2rem;
+	height: 2rem;
+}
+.gen-profile-pic {
+	width: 2rem;
+	height: 2rem;
+	color: #fff;
+	background: #eee;
+}
+.score {
+	font-size: 1.1rem;
+}
+.score-container:hover {
+	cursor: pointer;
+	background: #eeffff;
+}
+.lb-tb-heading {
+	padding-right: 1.25rem;
+	padding-left: 1.25rem;
+}
+.lb-rk {
+	padding-left: 2rem;
+}
+
+
+/*** Media queries ***/
+
+@media screen and (min-width: 20em) {
+    #wc-title {
+			display: none;
+		}
+}
+@media screen and (min-width: 48em) {
+		#wc-title {
+			display: flex;
+		}
+}

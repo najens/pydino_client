@@ -1,0 +1,60 @@
+import { FETCH_ADD_USER_FAILURE, FETCH_ADD_USER_REQUEST,
+  FETCH_ADD_USER_SUCCESS, FETCH_EDIT_USER_FAILURE,
+  FETCH_EDIT_USER_REQUEST, FETCH_EDIT_USER_SUCCESS,
+  FETCH_CHANGE_PASSWORD_FAILURE, FETCH_CHANGE_PASSWORD_REQUEST,
+  FETCH_CHANGE_PASSWORD_SUCCESS,
+} from '../actions/users'
+import { FETCH_LOGIN_FAILURE, FETCH_LOGIN_REQUEST, FETCH_LOGIN_SUCCESS,
+  FETCH_FORGOT_PASSWORD_FAILURE, FETCH_FORGOT_PASSWORD_REQUEST,
+  FETCH_FORGOT_PASSWORD_SUCCESS, FETCH_CONFIRM_EMAIL_REQUEST,
+  FETCH_CONFIRM_EMAIL_SUCCESS, FETCH_CONFIRM_EMAIL_FAILURE,
+  FETCH_LOGOUT_REQUEST, FETCH_LOGOUT_SUCCESS, FETCH_LOGOUT_FAILURE
+} from '../actions/authedUser'
+import { CLEAR_ERROR_MESSAGE } from '../actions/errorMessage'
+import { FETCH_MAIL_CONTACT_REQUEST, FETCH_MAIL_CONTACT_SUCCESS,
+  FETCH_MAIL_CONTACT_FAILURE
+} from '../actions/contact'
+
+/**
+ * Updates errorMessage state in store each
+ * time an action in switch case is called
+ *
+ * @param {Object} state - errorMessage
+ * @param {Object} action
+ * @return {Object} state - new ErrorMessage
+ */
+const errorMessage = (state = null, action) => {
+  switch (action.type) {
+    case FETCH_ADD_USER_FAILURE :
+    case FETCH_LOGIN_FAILURE :
+    case FETCH_FORGOT_PASSWORD_FAILURE :
+    case FETCH_CHANGE_PASSWORD_FAILURE :
+    case FETCH_CONFIRM_EMAIL_FAILURE :
+    case FETCH_EDIT_USER_FAILURE :
+    case FETCH_LOGOUT_FAILURE :
+    case FETCH_MAIL_CONTACT_FAILURE :
+      return action.message
+    case FETCH_ADD_USER_REQUEST :
+    case FETCH_ADD_USER_SUCCESS :
+    case FETCH_LOGIN_REQUEST :
+    case FETCH_LOGIN_SUCCESS :
+    case FETCH_FORGOT_PASSWORD_REQUEST :
+    case FETCH_FORGOT_PASSWORD_SUCCESS :
+    case FETCH_CHANGE_PASSWORD_REQUEST :
+    case FETCH_CHANGE_PASSWORD_SUCCESS :
+    case FETCH_CONFIRM_EMAIL_REQUEST :
+    case FETCH_CONFIRM_EMAIL_SUCCESS :
+    case FETCH_EDIT_USER_REQUEST :
+    case FETCH_EDIT_USER_SUCCESS :
+    case CLEAR_ERROR_MESSAGE :
+    case FETCH_LOGOUT_REQUEST :
+    case FETCH_LOGOUT_SUCCESS :
+    case FETCH_MAIL_CONTACT_REQUEST :
+    case FETCH_MAIL_CONTACT_FAILURE :
+      return null
+    default :
+      return state
+  }
+}
+
+export default errorMessage
