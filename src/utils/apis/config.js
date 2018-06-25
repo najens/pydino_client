@@ -1,2 +1,2 @@
-const DOMAIN = 'http://localhost:5000/'
+const DOMAIN = 'https://pydino.com/'
 export default DOMAIN
