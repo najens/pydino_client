@@ -1,5 +1,5 @@
 import axios from 'axios'
-import DOMAIN from './config'
+import DOMAIN from '../../config'
 
 // Url and API Endpoints
 const API_ENDPOINT = DOMAIN + 'api/v1/'
