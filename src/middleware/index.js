@@ -6,5 +6,5 @@ import { applyMiddleware } from 'redux'
 // will be passed to the store
 export default applyMiddleware(
   thunk,
-  logger
+  // logger
 )
