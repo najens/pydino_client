@@ -97,7 +97,7 @@ class ProjectList extends Component {
 	}
 
   render() {
-    const { filteredIds } = this.state
+    const { filteredIds, start } = this.state
     const { numProjects, numReactProjects, numJavascriptProjects,
       numPythonProjects, numAndroidProjects
     } = this.props
@@ -120,9 +120,11 @@ class ProjectList extends Component {
             </article>
           ))}
         </div>
-        <div className='d-flex justify-content-center mt-4 mb-4'>
-					<button className='btn btn-primary show-more' onClick={this.loadMore}>Show More</button>
-				</div>
+        {(start + 5) <= filteredIds.length &&
+          <div className='d-flex justify-content-center mt-4 mb-4'>
+  					<button className='btn btn-primary show-more' onClick={this.loadMore}>Show More</button>
+  				</div>
+        }
       </div>
     )
   }
