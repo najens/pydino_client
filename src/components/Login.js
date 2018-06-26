@@ -57,7 +57,6 @@ class Login extends Component {
       const self = this
       window.FB.login(function(response) {
         // handle the response
-        console.log('Login response: ', response)
         self.statusChangeCallback(response)
       }, {scope: 'public_profile,email'});
     }
@@ -184,7 +183,6 @@ class Login extends Component {
 }
 
 function mapStateToProps ({ authedUser, isFetching, errorMessage, successMessage }, props) {
-  console.log(props)
   return {
     authedUser,
     isFetching,

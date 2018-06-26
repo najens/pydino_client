@@ -59,7 +59,6 @@ class Signup extends Component {
     const self = this
     window.FB.login(function(response) {
       // handle the response
-      console.log(response)
       self.statusChangeCallback(response)
     }, {scope: 'public_profile,email'});
   }

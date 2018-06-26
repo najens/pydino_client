@@ -37,7 +37,6 @@ class Contact extends Component {
       email: formValues.email,
       message: formValues.message,
     }
-    console.log(contact)
     handleMailContact(contact).then(() => {
       const { errorMessage } = this.props
       if (!errorMessage) {

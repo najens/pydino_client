@@ -30,7 +30,6 @@ class Project extends Component {
   	}
     const title = project.title.toLowerCase()
     const titleArray = title.split(' ')
-    console.log(titleArray)
     let url_title = ''
     for (let i = 0; i < titleArray.length - 1; i++) {
       url_title += `${titleArray[i]}-`

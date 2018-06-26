@@ -132,14 +132,6 @@ const Elimination = ({ game, groupPicks, group2Picks, picks, allowDrop, drag, dr
 		}
 		pick = picks.r2_2
 	}
-	console.log(
-		`
-		Bracket: ${bracket}
-		Pick1: ${pick1}
-		Pick2: ${pick2}
-		Pick: ${pick}
-		`
-	)
 
 	if(Object.keys(bracket).length === 0) {
 		return (

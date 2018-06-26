@@ -37,7 +37,6 @@ class MatchForm extends Component {
 		// If the props have changed, set new state
   	if(nextProps.Match !== prevState.Match) {
       const Match = nextProps.Match
-			console.log(Match)
       if (!Match) {
         return null
       }
@@ -194,7 +193,6 @@ class MatchForm extends Component {
     const { successMessage, errorMessage, authedUser, isFetching,
 			type
 		} = this.props
-		console.log(authedUser)
 
 		if (!isAdmin(authedUser)) {
 			return <NotFound />

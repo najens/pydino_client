@@ -7,7 +7,6 @@ import NotFound from '../NotFound'
 class Leaderboard extends Component {
   render () {
     const { brackets, changeId, authedUser } = this.props
-    console.log(authedUser)
     if (!authedUser.id) {
       return <NotFound />
     }

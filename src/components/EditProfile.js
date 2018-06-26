@@ -28,7 +28,6 @@ class Signup extends Component {
       if (!user) {
         return null
       }
-      console.log(user)
     	return {
         user: user,
 				name: user.name,

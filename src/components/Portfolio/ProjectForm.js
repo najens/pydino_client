@@ -382,7 +382,6 @@ class ProjectForm extends Component {
 function mapStateToProps ({ errorMessage, authedUser, isFetching,
 	successMessage, topics, projects
 }, props) {
-	console.log(props)
 	let type
 	let project
 	if (props.match.path === '/project/add') {

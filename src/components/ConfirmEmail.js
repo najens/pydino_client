@@ -11,7 +11,6 @@ class ConfirmEmail extends Component {
         const urlArray = url.split('?token=')
         const token = urlArray[1]
         if (token) {
-            console.log("TOKEN: ", token)
             dispatch(handleConfirmEmail(token))
         }
     }

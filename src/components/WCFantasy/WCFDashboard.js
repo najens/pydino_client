@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Bracket from './Bracket'
 
 const WCFDashboard = ({authedUser}) => {
-  console.log(authedUser.id)
   return (
     <div>
       <Bracket id={authedUser.id} />

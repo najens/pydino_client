@@ -57,7 +57,6 @@ class ChangePassword extends Component {
               oldPassword,
               password,
           }
-          console.log(credentials)
 
           dispatch(handleChangePassword(credentials))
               .then(() => {
