@@ -64,7 +64,7 @@ class Project extends Component {
     return (
 			<Link to={`/project/${project.id}/${url_title}`}>
 				<div className="flex-row portfolio-container">
-					<div className="portfolio-img-box d-flex align-items-center"><img alt={project.alt} src={imgSrc}/></div>
+					<div className="portfolio-img-box d-flex align-items-center"><img className='portfolio-img' alt={project.alt} src={imgSrc}/></div>
 					<div className="flex-col portfolio-text">
 						<h4 className="portfolio-title blue-dark" id={`portfolio-project-${project.id}`}>{project.title}</h4>
 						<p className="portfolio-description">{project.description}</p>

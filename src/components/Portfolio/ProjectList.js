@@ -121,7 +121,7 @@ class ProjectList extends Component {
           ))}
         </div>
         <div className='d-flex justify-content-center mt-4 mb-4'>
-					<a className='btn btn-primary' onClick={this.loadMore}>Show More</a>
+					<button className='btn btn-primary show-more' onClick={this.loadMore}>Show More</button>
 				</div>
       </div>
     )
