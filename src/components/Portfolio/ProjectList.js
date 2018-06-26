@@ -115,7 +115,7 @@ class ProjectList extends Component {
         </div>
         <div className="d-flex flex-col w-100">
           {filteredIds.map((id) => (
-            <article key={id}>
+            <article className='w-100' key={id}>
               <Project id={id} />
             </article>
           ))}
