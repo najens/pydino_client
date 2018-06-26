@@ -5,6 +5,21 @@ import { FaCircle } from 'react-icons/lib/fa'
 import aws_lightsail from '../../img/aws_lightsail.jpg'
 import my_reads from '../../img/my_reads.jpg'
 import fantasy_wc from '../../img/fantasy_wc.jpg'
+import item_catalog from '../../img/item_catalog.jpg'
+import neighborhood_map from '../../img/neighborhood_map.jpg'
+import inventory_app from '../../img/inventory_app.jpg'
+import portfolio from '../../img/portfolio.jpg'
+import movie_trailer from '../../img/movie_trailer.png'
+import book_listing from '../../img/book_listing.jpg'
+import football_counter from '../../img/football_counter.jpg'
+import habit_tracker from '../../img/habit_tracker.jpg'
+import musical_structure from '../../img/musical_structure.jpg'
+import news_analytics from '../../img/news_analytics.jpg'
+import news_app from '../../img/news_app.png'
+import quiz_app from '../../img/quiz_app.jpg'
+import single_screen from '../../img/single_screen.jpg'
+import tour_guide from '../../img/tour_guide.jpg'
+import wiki_crawler from '../../img/wiki_crawler.jpg'
 import pydinoFantasySm from '../../img/pydino-fantasy-sm.png'
 
 class Project extends Component {
@@ -18,8 +33,17 @@ class Project extends Component {
 		// TODO:  Figure out how to get host and receive images from database
 
     let imgSrc
-  	const imgs = [aws_lightsail, my_reads, fantasy_wc]
-  	const imgKeys = ['aws_lightsail', 'my_reads', 'fantasy_wc']
+  	const imgs = [aws_lightsail, my_reads, fantasy_wc, item_catalog,
+      neighborhood_map, inventory_app, portfolio, movie_trailer, book_listing,
+      football_counter, habit_tracker, musical_structure, news_analytics,
+      news_app, quiz_app, single_screen, tour_guide, wiki_crawler
+    ]
+  	const imgKeys = ['aws_lightsail', 'my_reads', 'fantasy_wc', 'item_catalog',
+      'neighborhood_map', 'inventory_app', 'portfolio', 'movie_trailer',
+      'book_listing', 'football_counter', 'habit_tracker', 'musical_structure',
+      'news_analytics', 'news_app', 'quiz_app', 'single_screen', 'tour_guide',
+      'wiki_crawler'
+    ]
   	if (project) {
   		const imgUrl = project.img_url
   		for (let i = 0; i < imgs.length; i++) {

@@ -245,12 +245,15 @@ class ProjectForm extends Component {
     const { successMessage, errorMessage, authedUser, isFetching, topicArray,
 			type
 		} = this.props
+    let url_title
 
     if (!isAdmin(authedUser)) {
       return <NotFound />
     }
 
-    const url_title = createUrlTitle(project.title)
+    if (type === 'edit') {
+      url_title = createUrlTitle(project.title)
+    }
 
 		if (toProject !== '') {
       if ( type === 'add' ) {
