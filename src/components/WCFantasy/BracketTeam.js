@@ -46,6 +46,10 @@ class BracketTeam extends Component {
 			'se', 'kr', 'be', 'pa', 'tn', 'en', 'pl', 'sn', 'co', 'jp'
 		]
 
+		if (!team) {
+			return null
+		}
+
 		const iso_2 = team.iso_2
 		for (let i = 0; i < imgs.length; i++) {
 			if (iso_2 === imgKeys[i]) {

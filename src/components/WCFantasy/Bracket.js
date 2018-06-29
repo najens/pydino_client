@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import 'drag-drop-touch'
 import BracketGroup from './BracketGroup'
@@ -9,6 +9,8 @@ import FetchSuccess from '../FetchSuccess'
 import FetchError from '../FetchError'
 import { Redirect } from 'react-router-dom'
 import NavTabs from './NavTabs'
+import BracketTeam from './BracketTeam'
+import BrTeamName from './BrTeamName'
 
 class Bracket extends Component {
   state = {
@@ -318,33 +320,39 @@ class Bracket extends Component {
       }
     }
   }
+  handleHome = () => {
+    this.setState({
+      page: 1,
+    })
+  }
   handleClick = () => {
     const { grp_a_1, grp_a_2, grp_b_1, grp_b_2, grp_c_1, grp_c_2, grp_d_1,
       grp_d_2, grp_e_1, grp_e_2, grp_f_1, grp_f_2, grp_g_1, grp_g_2, grp_h_1,
       grp_h_2
     } = this.state
+    const { masterBracket } = this.props
     const picks = [grp_a_1, grp_a_2, grp_b_1, grp_b_2, grp_c_1, grp_c_2,
       grp_d_1, grp_e_1, grp_e_2, grp_f_1, grp_f_2, grp_g_1, grp_g_2, grp_h_1,
       grp_h_2
     ]
 
     const groupPicks = {
-      grp_a_1,
-      grp_a_2,
-      grp_b_1,
-      grp_b_2,
-      grp_c_1,
-      grp_c_2,
-      grp_d_1,
-      grp_d_2,
-      grp_e_1,
-      grp_e_2,
-      grp_f_1,
-      grp_f_2,
-      grp_g_1,
-      grp_g_2,
-      grp_h_1,
-      grp_h_2,
+      grp_a_1: masterBracket.grp_a_1,
+      grp_a_2: masterBracket.grp_a_2,
+      grp_b_1: masterBracket.grp_b_1,
+      grp_b_2: masterBracket.grp_b_2,
+      grp_c_1: masterBracket.grp_c_1,
+      grp_c_2: masterBracket.grp_c_2,
+      grp_d_1: masterBracket.grp_d_1,
+      grp_d_2: masterBracket.grp_d_2,
+      grp_e_1: masterBracket.grp_e_1,
+      grp_e_2: masterBracket.grp_e_2,
+      grp_f_1: masterBracket.grp_f_1,
+      grp_f_2: masterBracket.grp_f_2,
+      grp_g_1: masterBracket.grp_g_1,
+      grp_g_2: masterBracket.grp_g_2,
+      grp_h_1: masterBracket.grp_h_1,
+      grp_h_2: masterBracket.grp_h_2,
     }
     if (!picks.includes('')) {
       this.setState(() => ({
@@ -405,6 +413,30 @@ class Bracket extends Component {
       page: prevState.page - 1
     }))
   }
+  showSubmit = () => {
+    const { bracket } = this.state
+
+    if (bracket.r16_1 === null || bracket.r16_2 === null ||
+      bracket.r16_3 === null || bracket.r16_4 === null ||
+      bracket.r16_5 === null || bracket.r16_6 === null ||
+      bracket.r16_7 === null || bracket.r16_8 === null ||
+      bracket.r8_1 === null || bracket.r8_2 === null ||
+      bracket.r8_3 === null || bracket.r8_4 === null ||
+      bracket.r4_1 === null || bracket.r4_2 === null ||
+      bracket.r2_1 === null || bracket.r2_2 === null ||
+      bracket.r16_1 === 0 || bracket.r16_2 === 0 ||
+      bracket.r16_3 === 0 || bracket.r16_4 === 0 ||
+      bracket.r16_5 === 0 || bracket.r16_6 === 0 ||
+      bracket.r16_7 === 0 || bracket.r16_8 === 0 ||
+      bracket.r8_1 === 0 || bracket.r8_2 === 0 ||
+      bracket.r8_3 === 0 || bracket.r8_4 === 0 ||
+      bracket.r4_1 === 0 || bracket.r4_2 === 0 ||
+      bracket.r2_1 === 0 || bracket.r2_2 === 0
+    ) {
+      return true
+    }
+    return false
+  }
   handleSubmit = () => {
     const { grp_a_1, grp_a_2, grp_b_1, grp_b_2, grp_c_1, grp_c_2, grp_d_1,
       grp_d_2, grp_e_1, grp_e_2, grp_f_1, grp_f_2, grp_g_1, grp_g_2, grp_h_1,
@@ -446,7 +478,7 @@ class Bracket extends Component {
       r2_1,
       r2_2
     }
-    if (authedUser.id) {
+    if (!authedUser.id) {
       dispatch(storeBracket(bracket))
       this.setState(() => ({
         toSignup: true,
@@ -455,7 +487,7 @@ class Bracket extends Component {
       dispatch(handleAddBracket(bracket))
     }
   }
-  handleEditMaster = () => {
+  editBracket = () => {
     const { id, grp_a_1, grp_a_2, grp_b_1, grp_b_2, grp_c_1, grp_c_2, grp_d_1,
       grp_d_2, grp_e_1, grp_e_2, grp_f_1, grp_f_2, grp_g_1, grp_g_2, grp_h_1,
       grp_h_2, r16_1, r16_2, r16_3, r16_4, r16_5, r16_6, r16_7, r16_8,
@@ -504,7 +536,7 @@ class Bracket extends Component {
       grp_d_2, grp_e_1, grp_e_2, grp_f_1, grp_f_2, grp_g_1, grp_g_2, grp_h_1,
       grp_h_2, r16_1, r16_2, r16_3, r16_4, r16_5, r16_6, r16_7, r16_8,
       r8_1, r8_2, r8_3, r8_4, r4_1, r4_2, r2_1, r2_2, page, groupPicks,
-      r16Picks, r8Picks, r4Picks, bracket, toSignup
+      r16Picks, r8Picks, r4Picks, bracket, toSignup, transfering
     } = this.state
     const { groupAIds, groupBIds, groupCIds, groupDIds, groupEIds, groupFIds,
       groupGIds, groupHIds, successMessage, errorMessage, name
@@ -546,6 +578,7 @@ class Bracket extends Component {
       r2_1,
       r2_2
     }
+
     // if(bracket.grp_a_1 === 0) {
     //   return <div><NavTabs path='/' /></div>
     // }
@@ -561,7 +594,14 @@ class Bracket extends Component {
                   group by dragging and dropping the flags.
                 </p>
             }
-            <h4 className='text-left'>Group Stage</h4>
+            <nav class="nav nav-pills nav-justified">
+              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            </nav>
+            <div className='mb-4' />
             <BracketGroup
               group='A'
               groupIds={groupAIds}
@@ -637,11 +677,13 @@ class Bracket extends Component {
             {Object.keys(bracket).length === 0 || bracket.id === 1
               ? <button
                   className='btn btn-primary mb-4'
-                  onClick={bracket.id === 1 ? this.handleEditMaster : null}
+                  onClick={this.handleSubmit}
                 >
                   Submit
                 </button>
-              : <div className='pm-dark'>Bracket submitted</div>
+              : <button className='btn btn-primary mb-4' onClick={this.handleClick}>
+                  Continue
+                </button>
             }
             {successMessage && <FetchSuccess message={successMessage} />}
             {errorMessage && <FetchError message={errorMessage} />}
@@ -649,214 +691,344 @@ class Bracket extends Component {
         </div>
   		)
     }
+    const r16Games = ['r16_1', 'r16_2', 'r16_3', 'r16_4', 'r16_5', 'r16_6',
+      'r16_7', 'r16_8'
+    ]
+    const r8Games = ['r8_1', 'r8_2', 'r8_3', 'r8_4']
+    const r4Games = ['r4_1', 'r4_2']
+    const r2Games = ['r2_1', 'r2_2']
+
+    const showGames = (game, index) => {
+			let pick1
+			let pick2
+			let pick
+			let game1
+			let game2
+			if (game === 'r16_1') {
+				game1 = 'grp_a_1'
+				game2 = 'grp_b_2'
+				pick1 = groupPicks.grp_a_1
+				pick2 = groupPicks.grp_b_2
+				pick = picks.r16_1
+			}
+			if (game === 'r16_2') {
+				game1 = 'grp_c_1'
+				game2 = 'grp_d_2'
+				pick1 = groupPicks.grp_c_1
+				pick2 = groupPicks.grp_d_2
+				pick = picks.r16_2
+			}
+			if (game === 'r16_3') {
+				game1 = 'grp_e_1'
+				game2 = 'grp_f_2'
+				pick1 = groupPicks.grp_e_1
+				pick2 = groupPicks.grp_f_2
+				pick = picks.r16_3
+			}
+			if (game === 'r16_4') {
+				game1 = 'grp_g_1'
+				game2 = 'grp_h_2'
+				pick1 = groupPicks.grp_g_1
+				pick2 = groupPicks.grp_h_2
+				pick = picks.r16_4
+			}
+			if (game === 'r16_5') {
+				game1 = 'grp_b_1'
+				game2 = 'grp_a_2'
+				pick1 = groupPicks.grp_b_1
+				pick2 = groupPicks.grp_a_2
+				pick = picks.r16_5
+			}
+			if (game === 'r16_6') {
+				game1 = 'grp_d_1'
+				game2 = 'grp_c_2'
+				pick1 = groupPicks.grp_d_1
+				pick2 = groupPicks.grp_c_2
+				pick = picks.r16_6
+			}
+			if (game === 'r16_7') {
+				game1 = 'grp_f_1'
+				game2 = 'grp_e_2'
+				pick1 = groupPicks.grp_f_1
+				pick2 = groupPicks.grp_e_2
+				pick = picks.r16_7
+			}
+			if (game === 'r16_8') {
+				game1 = 'grp_h_1'
+				game2 = 'grp_g_2'
+				pick1 = groupPicks.grp_h_1
+				pick2 = groupPicks.grp_g_2
+				pick = picks.r16_8
+			}
+      if (game === 'r8_1') {
+    		game1 = 'r16_1'
+    		game2 = 'r16_2'
+    		pick1 = r16Picks.r16_1
+    		pick2 = r16Picks.r16_2
+    		pick = picks.r8_1
+    	}
+    	if (game === 'r8_2') {
+    		game1 = 'r16_3'
+    		game2 = 'r16_4'
+    		pick1 = r16Picks.r16_3
+    		pick2 = r16Picks.r16_4
+    		pick = picks.r8_2
+    	}
+    	if (game === 'r8_3') {
+    		game1 = 'r16_5'
+    		game2 = 'r16_6'
+    		pick1 = r16Picks.r16_5
+    		pick2 = r16Picks.r16_6
+    		pick = picks.r8_3
+    	}
+    	if (game === 'r8_4') {
+    		game1 = 'r16_7'
+    		game2 = 'r16_8'
+    		pick1 = r16Picks.r16_7
+    		pick2 = r16Picks.r16_8
+    		pick = picks.r8_4
+    	}
+    	if (game === 'r4_1') {
+    		game1 = 'r8_1'
+    		game2 = 'r8_2'
+    		pick1 = r8Picks.r8_1
+    		pick2 = r8Picks.r8_2
+    		pick = picks.r4_1
+    	}
+    	if (game === 'r4_2') {
+    		game1 = 'r8_3'
+    		game2 = 'r8_4'
+    		pick1 = r8Picks.r8_3
+    		pick2 = r8Picks.r8_4
+    		pick = picks.r4_2
+    	}
+    	if (game === 'r2_1') {
+    		game1 = 'r4_1'
+    		game2 = 'r4_2'
+    		pick1 = r4Picks.r4_1
+    		pick2 = r4Picks.r4_2
+    		pick = picks.r2_1
+    	}
+    	if (game === 'r2_2') {
+    		if (r8Picks.r8_1 === r4Picks.r4_1) {
+    			game1 = 'r8_2'
+    			pick1 = r8Picks.r8_2
+    		} else {
+    			game1 = 'r8_1'
+    			pick1 = r8Picks.r8_1
+    		}
+    		if (r8Picks.r8_3 === r4Picks.r4_2) {
+    			game2 = 'r8_4'
+    			pick2 = r8Picks.r8_4
+    		} else {
+    			game2 = 'r8_3'
+    			pick2 = r8Picks.r8_3
+    		}
+    		pick = picks.r2_2
+    	}
+			return (
+				<li key={index}>
+          {game === 'r2_1' &&
+            <p>Final</p>
+          }
+          {game === 'r2_2' &&
+            <p>Third Place</p>
+          }
+          {game !== 'r2_1' && game !== 'r2_2'
+            && <p>{`Match ${index + 1}`}</p>
+          }
+					<div className='ml-4 mt-4 mb-4 d-flex align-items-center'>
+						<div>
+              {this.showSubmit() === false
+                ? <Fragment>
+                    <BracketTeam
+                      key={`${game1}-${game}`}
+                      id={pick1}
+                      game={game}
+                      pgame={game1}
+                      bracket='nodrag'
+                    />
+                    <BracketTeam
+                      key={`${game2}-${game}`}
+                      id={pick2}
+                      game={game}
+                      pgame={game2}
+                      bracket='nodrag'
+                    />
+                  </Fragment>
+                : <Fragment>
+                    <BracketTeam
+                      key={`${game1}-${game}`}
+                      id={pick1}
+                      allowDrop={this.allowDrop}
+                      drop={this.drop}
+                      drag={this.drag}
+                      game={game}
+                      pgame={game1}
+                    />
+                    <BracketTeam
+                      key={`${game2}-${game}`}
+                      id={pick2}
+                      allowDrop={this.allowDrop}
+                      drop={this.drop}
+                      drag={this.drag}
+                      game={game}
+                      pgame={game2}
+                    />
+                  </Fragment>
+              }
+						</div>
+						<div className='pick-container d-flex align-items-center'>
+              {this.showSubmit() === false
+                ? <Fragment>
+                    <div
+                      key={game}
+                      id={game}
+                      className='flag-container'
+                    >
+                      <BracketTeam key={pick} id={pick} bracket='img' />
+                    </div>
+                    <BrTeamName id={pick} />
+                  </Fragment>
+                : <Fragment>
+                    <div
+                      key={game}
+                      id={game}
+                      className='flag-container'
+                      onDrop={this.drop}
+                      onDragOver={this.allowDrop}
+                    >
+                    </div>
+                    <BrTeamName id={pick} />
+                  </Fragment>
+              }
+						</div>
+					</div>
+				</li>
+			)
+		}
+
     if (page === 2) {
       return (
         <div>
-          <FaArrowLeft className='d-flex back-arrow' onClick={this.prevPage} />
-          <h4 className='text-left'>Round of 16</h4>
-          <p>Match 1</p>
-          <Elimination
-            game='r16_1'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 2</p>
-          <Elimination
-            game='r16_2'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 3</p>
-          <Elimination
-            game='r16_3'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 4</p>
-          <Elimination
-            game='r16_4'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 5</p>
-          <Elimination
-            game='r16_5'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 6</p>
-          <Elimination
-            game='r16_6'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 7</p>
-          <Elimination
-            game='r16_7'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 8</p>
-          <Elimination
-            game='r16_8'
-            groupPicks={groupPicks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <button className='btn btn-primary mb-4' onClick={this.handleClick2}>
-            Continue
-          </button>
+          <NavTabs path='/' />
+          <div className='container pg-margin'>
+            {name !== undefined
+              ? <h4>{`${name}'s Bracket`}</h4>
+              : <p className='mt-4 pm-dark'>
+                  Pick the two teams that you think will advance from the
+                  round by dragging and dropping the flags.
+                </p>
+            }
+            <nav class="nav nav-pills nav-justified">
+              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            </nav>
+            <div className='mb-4' />
+            <ul>
+  						{r16Games.map((game, index) => showGames(game, index))}
+  					</ul>
+            <button className='btn btn-primary mb-4' onClick={this.handleClick2}>
+              Continue
+            </button>
+          </div>
         </div>
       )
     }
     if (page === 3) {
       return (
         <div>
-          <FaArrowLeft className='d-flex back-arrow' onClick={this.prevPage} />
-          <h4 className='text-left'>Quarter-finals</h4>
-          <p>Match 1</p>
-          <Elimination
-            game='r8_1'
-            groupPicks={r16Picks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 2</p>
-          <Elimination
-            game='r8_2'
-            groupPicks={r16Picks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 3</p>
-          <Elimination
-            game='r8_3'
-            groupPicks={r16Picks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 4</p>
-          <Elimination
-            game='r8_4'
-            groupPicks={r16Picks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <button className='btn btn-primary mb-4' onClick={this.handleClick3}>
-            Continue
-          </button>
+          <NavTabs path='/' />
+          <div className='container pg-margin'>
+            {name !== undefined
+              ? <h4>{`${name}'s Bracket`}</h4>
+              : <p className='mt-4 pm-dark'>
+                  Pick the two teams that you think will advance from each
+                  group by dragging and dropping the flags.
+                </p>
+            }
+            <nav class="nav nav-pills nav-justified">
+              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            </nav>
+            <div className='mb-4' />
+            <ul>
+  						{r8Games.map((game, index) => showGames(game, index))}
+  					</ul>
+            <button className='btn btn-primary mb-4' onClick={this.handleClick3}>
+              Continue
+            </button>
+          </div>
         </div>
       )
     }
     if (page === 4) {
       return (
         <div>
-          <FaArrowLeft className='d-flex back-arrow' onClick={this.prevPage} />
-          <h4 className='text-left'>Semi-finals</h4>
-          <p>Match 1</p>
-          <Elimination
-            game='r4_1'
-            groupPicks={r8Picks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <p>Match 2</p>
-          <Elimination
-            game='r4_2'
-            groupPicks={r8Picks}
-            picks={picks}
-            allowDrop={this.allowDrop}
-            drag={this.drag}
-            drop={this.drop}
-            bracket={bracket}
-          />
-          <button className='btn btn-primary mb-4' onClick={this.handleClick4}>
-            Continue
-          </button>
+          <NavTabs path='/' />
+          <div className='container pg-margin'>
+            {name !== undefined
+              ? <h4>{`${name}'s Bracket`}</h4>
+              : <p className='mt-4 pm-dark'>
+                  Pick the two teams that you think will advance from each
+                  group by dragging and dropping the flags.
+                </p>
+            }
+            <nav class="nav nav-pills nav-justified">
+              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            </nav>
+            <div className='mb-4' />
+            <ul>
+  						{r4Games.map((game, index) => showGames(game, index))}
+  					</ul>
+            <button className='btn btn-primary mb-4' onClick={this.handleClick4}>
+              Continue
+            </button>
+          </div>
         </div>
       )
     }
     return (
       <div>
-        <FaArrowLeft className='back-arrow d-flex' onClick={this.prevPage} />
-        <h4 className='text-left'>Championship</h4>
-        <p>Final</p>
-        <Elimination
-          game='r2_1'
-          groupPicks={r4Picks}
-          grpu2Picks={r8Picks}
-          picks={picks}
-          allowDrop={this.allowDrop}
-          drag={this.drag}
-          drop={this.drop}
-          bracket={bracket}
-        />
-        <p>Third Place</p>
-        <Elimination
-          game='r2_2'
-          groupPicks={r4Picks}
-          group2Picks={r8Picks}
-          picks={picks}
-          allowDrop={this.allowDrop}
-          drag={this.drag}
-          drop={this.drop}
-          bracket={bracket}
-        />
-        {Object.keys(bracket).length === 0
-          ? <button className='btn btn-primary mb-4' onClick={this.handleSubmit}>
-              Submit
-            </button>
-          : <div className='pm-dark'>Bracket submitted</div>
-        }
-        {successMessage && <FetchSuccess message={successMessage} />}
-        {errorMessage && <FetchError message={errorMessage} />}
-
+        <NavTabs path='/' />
+        <div className='container pg-margin'>
+          {name !== undefined
+            ? <h4>{`${name}'s Bracket`}</h4>
+            : <p className='mt-4 pm-dark'>
+                Pick the two teams that you think will advance from each
+                group by dragging and dropping the flags.
+              </p>
+          }
+          <nav class="nav nav-pills nav-justified">
+            <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+            <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+            <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+            <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+            <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+          </nav>
+          <div className='mb-4' />
+          <ul>
+            {r2Games.map((game, index) => showGames(game, index))}
+          </ul>
+          {this.showSubmit() === true
+            ? <button className='btn btn-primary mb-4' onClick={this.editBracket}>
+                Submit
+              </button>
+            : <div className='pm-dark'>Bracket submitted</div>
+          }
+          {successMessage && <FetchSuccess message={successMessage} />}
+          {errorMessage && <FetchError message={errorMessage} />}
+        </div>
       </div>
     )
   }
@@ -866,6 +1038,10 @@ function mapStateToProps ({ teams, brackets, authedUser, users, successMessage, 
   let bracket
   let uName
   let uid
+  let masterBracket = {}
+	if (Object.keys(brackets).length > 0) {
+		masterBracket = brackets[1]
+	}
   if (props.match) {
     const { id } = props.match.params
     uid = id
@@ -911,6 +1087,7 @@ function mapStateToProps ({ teams, brackets, authedUser, users, successMessage, 
     groupHIds: Object.keys(teams)
       .filter((a) => teams[a].group.includes('H'))
       .sort((a,b) => teams[b].Pts - teams[a].Pts),
+    masterBracket,
     bracket,
     authedUser,
     name: uName,

@@ -4,6 +4,7 @@ import DOMAIN from '../../config'
 // Url and API Endpoints
 const API_ENDPOINT = DOMAIN + 'api/v1/'
 const MAIL_CONTACT_ENDPOINT = API_ENDPOINT + 'contact'
+const SEND_EMAIL_ENDPOINT = API_ENDPOINT + 'email'
 
 /**
  * Takes in a user's contact info and sends
@@ -16,6 +17,30 @@ const MAIL_CONTACT_ENDPOINT = API_ENDPOINT + 'contact'
  */
 export const mailContact = (contact) =>
   axios(MAIL_CONTACT_ENDPOINT, {
+    method: 'post',
+    withCredentials: true,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify(contact)
+  })
+  .then(res => res.data)
+  .catch(err => {
+    console.log(err.response)
+    return err.response.data
+  })
+
+
+/**
+ * Sends an email to all users
+ *
+ * @param {object} contact
+ * @return {object} 200
+ *    success: {string}
+ */
+export const sendEmail = (contact) =>
+  axios(SEND_EMAIL_ENDPOINT, {
     method: 'post',
     withCredentials: true,
     headers: {

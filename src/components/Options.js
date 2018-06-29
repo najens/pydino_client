@@ -44,6 +44,11 @@ class Options extends Component {
                 to='/world-cup-fantasy/match/add' exact
                 onClick={this.handleClick}
               >Add Match</NavLink>
+              <NavLink
+                className="list-group-item"
+                to='/email' exact
+                onClick={this.handleClick}
+              >Send Email</NavLink>
             </Fragment>
           )
         }

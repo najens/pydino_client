@@ -21,9 +21,12 @@ import Dashboard from './Dashboard'
 import ProjectPage from './Portfolio/ProjectPage'
 import ProjectForm from './Portfolio/ProjectForm'
 import DeleteProject from './Portfolio/DeleteProject'
+import Email from './Portfolio/Email'
 import NotFound from './NotFound'
 import MatchForm from './WCFantasy/MatchForm'
 import DeleteMatch from './WCFantasy/DeleteMatch'
+import Quarterfinal from './WCFantasy/Quarterfinal'
+import DragDrop from './WCFantasy/DragDrop'
 
 /**
  * Main App component which handles component
@@ -90,6 +93,10 @@ class App extends Component {
                       path='/project/:id/:title'
                       component={ProjectPage}
                     />
+                    <Route
+                      path='/email' exact
+                      component={Email}
+                    />
                     {/** Fantasy WC App Routes */}
                     <Route path='/world-cup-fantasy' exact component={WCFDashboard} />
           		      <Route
@@ -103,6 +110,14 @@ class App extends Component {
                     <Route
                       path='/world-cup-fantasy/leaderboard'
                       component={Leaderboard}
+                    />
+                    <Route
+                      path='/world-cup-fantasy/bracket/:id/quarterfinal'
+                      component={Quarterfinal}
+                    />
+                    <Route
+                      path='/dragdrop'
+                      component={DragDrop}
                     />
                     <Route
                       path='/world-cup-fantasy/bracket/:id'
