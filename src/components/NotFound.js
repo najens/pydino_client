@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const NotFound = (props) => {
+const NotFound = () => {
 	return (
 		<div>404 Not Found</div>
 	)

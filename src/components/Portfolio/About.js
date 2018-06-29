@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import me from '../../img/me.jpeg';
 import { MdFlashOn, MdBugReport, MdScreenRotation, MdLock
 } from 'react-icons/lib/md'
 

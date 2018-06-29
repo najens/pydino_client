@@ -484,6 +484,9 @@ class Bracket extends Component {
       }))
     } else {
       dispatch(handleAddBracket(bracket))
+      this.setState(() => ({
+        page: 1,
+      }))
     }
   }
   editBracket = () => {
@@ -529,6 +532,9 @@ class Bracket extends Component {
       r2_2
     }
     dispatch(handleEditBracket(bracket))
+    this.setState(() => ({
+      page: 1,
+    }))
   }
   render () {
     const { grp_a_1, grp_a_2, grp_b_1, grp_b_2, grp_c_1, grp_c_2, grp_d_1,
@@ -593,12 +599,12 @@ class Bracket extends Component {
                   group by dragging and dropping the flags.
                 </p>
             }
-            <nav class="nav nav-pills nav-justified">
-              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
-              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
-              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
-              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
-              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            <nav className="nav nav-pills nav-justified">
+              <li className={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li className={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li className={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li className={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li className={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
             </nav>
             <div className='mb-4' />
             <BracketGroup
@@ -674,12 +680,7 @@ class Bracket extends Component {
               bracket={bracket}
             />
             {Object.keys(bracket).length === 0 || bracket.id === 1
-              ? <button
-                  className='btn btn-primary mb-4'
-                  onClick={this.handleSubmit}
-                >
-                  Submit
-                </button>
+              ? <p>Group stage bracket has been closed</p>
               : <button className='btn btn-primary mb-4' onClick={this.handleClick}>
                   Continue
                 </button>
@@ -919,12 +920,12 @@ class Bracket extends Component {
                   round by dragging and dropping the flags.
                 </p>
             }
-            <nav class="nav nav-pills nav-justified">
-              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
-              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
-              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
-              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
-              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            <nav className="nav nav-pills nav-justified">
+              <li className={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li className={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li className={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li className={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li className={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
             </nav>
             <div className='mb-4' />
             <ul>
@@ -949,12 +950,12 @@ class Bracket extends Component {
                   group by dragging and dropping the flags.
                 </p>
             }
-            <nav class="nav nav-pills nav-justified">
-              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
-              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
-              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
-              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
-              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            <nav className="nav nav-pills nav-justified">
+              <li className={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li className={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li className={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li className={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li className={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
             </nav>
             <div className='mb-4' />
             <ul>
@@ -979,12 +980,12 @@ class Bracket extends Component {
                   group by dragging and dropping the flags.
                 </p>
             }
-            <nav class="nav nav-pills nav-justified">
-              <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
-              <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
-              <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
-              <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
-              <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+            <nav className="nav nav-pills nav-justified">
+              <li className={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+              <li className={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+              <li className={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+              <li className={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+              <li className={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
             </nav>
             <div className='mb-4' />
             <ul>
@@ -1008,12 +1009,12 @@ class Bracket extends Component {
                 group by dragging and dropping the flags.
               </p>
           }
-          <nav class="nav nav-pills nav-justified">
-            <li class={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
-            <li class={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
-            <li class={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
-            <li class={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
-            <li class={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
+          <nav className="nav nav-pills nav-justified">
+            <li className={page === 1 ? 'nav-link active' : 'nav-link'} onClick={this.handleHome} >Group Stage</li>
+            <li className={page === 2 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick} >Round of 16</li>
+            <li className={page === 3 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick2} >Quarterfinal</li>
+            <li className={page === 4 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick3} >Semifinal</li>
+            <li className={page === 5 ? 'nav-link active' : 'nav-link'} onClick={this.handleClick4} >Final</li>
           </nav>
           <div className='mb-4' />
           <ul>

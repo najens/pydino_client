@@ -50,7 +50,7 @@ const errorMessage = (state = null, action) => {
     case FETCH_LOGOUT_REQUEST :
     case FETCH_LOGOUT_SUCCESS :
     case FETCH_MAIL_CONTACT_REQUEST :
-    case FETCH_MAIL_CONTACT_FAILURE :
+    case FETCH_MAIL_CONTACT_SUCCESS :
       return null
     default :
       return state

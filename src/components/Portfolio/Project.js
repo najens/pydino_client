@@ -20,7 +20,6 @@ import quiz_app from '../../img/quiz_app.jpg'
 import single_screen from '../../img/single_screen.jpg'
 import tour_guide from '../../img/tour_guide.jpg'
 import wiki_crawler from '../../img/wiki_crawler.jpg'
-import pydinoFantasySm from '../../img/pydino-fantasy-sm.png'
 
 class Project extends Component {
   render() {
