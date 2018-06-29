@@ -5,6 +5,8 @@ import LoadingSpinner from '../LoadingSpinner'
 import FetchSuccess from '../FetchSuccess'
 import FetchError from '../FetchError'
 import Nav from '../Nav'
+import { isAdmin } from '../../utils/helpers'
+import NotFound from '../NotFound'
 
 class Email extends Component {
   state = {
@@ -52,7 +54,12 @@ class Email extends Component {
 
   render() {
     const { formValues } = this.state
-    const { isFetching, successMessage, errorMessage } = this.props
+    const { authedUser, isFetching, successMessage, errorMessage } = this.props
+
+    if (!isAdmin(authedUser)) {
+      return <NotFound />
+    }
+
     return (
       <div id="contact">
 				<Nav path='/' />
@@ -110,8 +117,9 @@ class Email extends Component {
   }
 }
 
-function mapStateToProps({ isFetching, successMessage, errorMessage}) {
+function mapStateToProps({ authedUser, isFetching, successMessage, errorMessage}) {
   return {
+    authedUser,
     isFetching,
     successMessage,
     errorMessage,
