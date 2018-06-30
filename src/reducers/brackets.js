@@ -242,6 +242,9 @@ const calculateScore = (bracket, masterBracket) => {
 
 	r22Scoring(bracket.r2_2, masterBracket.r2_2)
 	r21Scoring(bracket.r2_1, masterBracket.r2_1)
+	if (!bracket.r16_1) {
+		ppr = 0
+	}
 	scores.userScore = userScore
 	scores.ppr = ppr
 	return scores

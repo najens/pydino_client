@@ -10,6 +10,7 @@ import { Redirect } from 'react-router-dom'
 import NavTabs from './NavTabs'
 import BracketTeam from './BracketTeam'
 import BrTeamName from './BrTeamName'
+import { isAdmin } from '../../utils/helpers'
 
 class Bracket extends Component {
   state = {
@@ -544,8 +545,9 @@ class Bracket extends Component {
       r16Picks, r8Picks, r4Picks, bracket, toSignup, transfering
     } = this.state
     const { groupAIds, groupBIds, groupCIds, groupDIds, groupEIds, groupFIds,
-      groupGIds, groupHIds, successMessage, errorMessage, name
+      groupGIds, groupHIds, successMessage, errorMessage, name, authedUser
     } = this.props
+    const admin = isAdmin(authedUser)
     if (toSignup === true) {
       return <Redirect to='/signup' />
     }
@@ -1020,6 +1022,11 @@ class Bracket extends Component {
           <ul>
             {r2Games.map((game, index) => showGames(game, index))}
           </ul>
+          {admin &&
+            <button className='btn btn-primary mb-4' onClick={this.editBracket}>
+              Submit
+            </button>
+          }
           {this.showSubmit() === true
             ? <p>Bracket submissions have been closed</p>
             : <div className='pm-dark'>Bracket submitted</div>
