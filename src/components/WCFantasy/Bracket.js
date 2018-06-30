@@ -1021,9 +1021,7 @@ class Bracket extends Component {
             {r2Games.map((game, index) => showGames(game, index))}
           </ul>
           {this.showSubmit() === true
-            ? <button className='btn btn-primary mb-4' onClick={this.editBracket}>
-                Submit
-              </button>
+            ? <p>Bracket submissions have been closed</p>
             : <div className='pm-dark'>Bracket submitted</div>
           }
           {successMessage && <FetchSuccess message={successMessage} />}

@@ -8,7 +8,7 @@ const Score = ({ id, user, bracket, userScore, ppr, score, changeId }) => {
 		return null
 	}
 	return (
-		<div className='list-group-item d-flex justify-content-between score-container' to={`/world-cup-fantasy/bracket/${user.public_id}`}>
+		<Link className='list-group-item d-flex justify-content-between score-container' to={`/world-cup-fantasy/bracket/${user.public_id}`}>
 			<div className='d-flex align-items-center w-50'>
 				{user.picture === ''
 					? <FaUser className='gen-profile-pic mr-2' />
@@ -22,7 +22,7 @@ const Score = ({ id, user, bracket, userScore, ppr, score, changeId }) => {
 				<div>{bracket.ppr}</div>
 				<div>880</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 
