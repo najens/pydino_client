@@ -86,6 +86,14 @@ const addRankToBrackets = (scoredBrackets) => {
 const calculateScore = (bracket, masterBracket) => {
 	let userScore = 0
 	let ppr = 880
+	let ppr8_1 = false
+	let ppr8_2 = false
+	let ppr8_3 = false
+	let ppr8_4 = false
+	let ppr4_1 = false
+	let ppr4_2 = false
+	let ppr2_1 = false
+	let ppr2_2 = false
 	const scores = {}
 	const groupScoring = (grpPick1, grpPick2, grpMasterPick1, grpMasterPick2) => {
 		if (grpMasterPick1 !== 0) {
@@ -108,7 +116,7 @@ const calculateScore = (bracket, masterBracket) => {
 		}
 	}
 
-	const r16Scoring = (r16pick, r8pick, r4pick, r2pick1, r2pick2, r16masterPick) => {
+	const r16Scoring = (r16pick, r8pick, r4pick, r2pick1, r2pick2, r16masterPick, game) => {
 		if (r16masterPick !== 0) {
 			if (r16pick === r16masterPick) {
 				userScore += 20
@@ -116,100 +124,247 @@ const calculateScore = (bracket, masterBracket) => {
 			}
 			if (r16pick !== r16masterPick) {
 				ppr -= 20
-				if (r16pick === r8pick) {
-					ppr -= 40
+
+				if (game === 'g16_1' || game === 'g16_2') {
+					if (r16pick === r8pick) {
+						ppr -= 40
+						ppr8_1 = true
+					}
+					if (r16pick === r4pick) {
+						ppr -= 80
+						ppr4_1 = true
+					}
 				}
-				if (r16pick === r4pick) {
-					ppr -= 80
+
+				if (game === 'g16_3' || game === 'g16_4') {
+					if (r16pick === r8pick) {
+						ppr -= 40
+						ppr8_2 = true
+					}
+					if (r16pick === r4pick) {
+						ppr -= 80
+						ppr4_1 = true
+					}
 				}
+
+				if (game === 'g16_5' || game === 'g16_6') {
+					if (r16pick === r8pick) {
+						ppr -= 40
+						ppr8_3 = true
+					}
+					if (r16pick === r4pick) {
+						ppr -= 80
+						ppr4_2 = true
+					}
+				}
+
+				if (game === 'g16_7' || game === 'g16_8') {
+					if (r16pick === r8pick) {
+						ppr -= 40
+						ppr8_4 = true
+					}
+					if (r16pick === r4pick) {
+						ppr -= 80
+						ppr4_2 = true
+					}
+				}
+
 				if (r16pick === r2pick1) {
 					ppr -= 160
+					ppr2_1 = true
 				}
 				if (r16pick === r2pick2) {
 					ppr -= 80
+					ppr2_2 = true
 				}
 			}
 		}
 	}
 
-	const r8Scoring = (r8pick, r4pick, r2pick1, r2pick2, r8masterPick) => {
+	const r8Scoring = (r8pick, r4pick, r2pick1, r2pick2, r8masterPick, ppr8, ppr4, ppr21, ppr22, game) => {
 		if (r8masterPick !== 0) {
 			if (r8pick === r8masterPick) {
 				userScore += 40
 				ppr -= 40
 			}
-			if (r8pick !== r8masterPick) {
-				ppr -= 40
-				if (r8pick === r4pick) {
-					ppr -= 80
-				}
-				if (r8pick === r2pick1) {
-					ppr -= 160
-				}
-				if (r8pick === r2pick2) {
-					ppr -= 80
+
+			if (game === 'g8_1') {
+				if (r8pick !== r8masterPick) {
+					if (ppr8 !== true) {
+						ppr -= 40
+						ppr8_1 = true
+					}
+					if (r8pick === r4pick && ppr4 !== true) {
+						ppr -= 80
+						ppr4_1 = true
+					}
+					if (r8pick === r2pick1 && ppr21 !== true) {
+						ppr -= 160
+						ppr2_1 = true
+					}
+					if (r8pick === r2pick2 && ppr22 !== true) {
+						ppr -= 80
+						ppr2_2 = true
+					}
 				}
 			}
+
+			if (game === 'g8_2') {
+				if (r8pick !== r8masterPick) {
+					if (ppr8 !== true) {
+						ppr -= 40
+						ppr8_2 = true
+					}
+					if (r8pick === r4pick && ppr4 !== true) {
+						ppr -= 80
+						ppr4_1 = true
+					}
+					if (r8pick === r2pick1 && ppr21 !== true) {
+						ppr -= 160
+						ppr2_1 = true
+					}
+					if (r8pick === r2pick2 && ppr22 !== true) {
+						ppr -= 80
+						ppr2_2 = true
+					}
+				}
+			}
+
+			if (game === 'g8_3') {
+				if (r8pick !== r8masterPick) {
+					if (ppr8 !== true) {
+						ppr -= 40
+						ppr8_3 = true
+					}
+					if (r8pick === r4pick && ppr4 !== true) {
+						ppr -= 80
+						ppr4_2 = true
+					}
+					if (r8pick === r2pick1 && ppr21 !== true) {
+						ppr -= 160
+						ppr2_1 = true
+					}
+					if (r8pick === r2pick2 && ppr22 !== true) {
+						ppr -= 80
+						ppr2_2 = true
+					}
+				}
+			}
+
+			if (game === 'g8_4') {
+				if (r8pick !== r8masterPick) {
+					if (ppr8 !== true) {
+						ppr -= 40
+						ppr8_4 = true
+					}
+					if (r8pick === r4pick && ppr4 !== true) {
+						ppr -= 80
+						ppr4_2 = true
+					}
+					if (r8pick === r2pick1 && ppr21 !== true) {
+						ppr -= 160
+						ppr2_1 = true
+					}
+					if (r8pick === r2pick2 && ppr22 !== true) {
+						ppr -= 80
+						ppr2_2 = true
+					}
+				}
+			}
+
 		}
 	}
 
-	const r4Scoring = (r4pick, r2pick1, r2pick2, r4masterPick) => {
+	const r4Scoring = (r4pick, r2pick1, r2pick2, r4masterPick, ppr4, ppr21, ppr22, game) => {
 		if (r4masterPick !== 0) {
 			if (r4pick === r4masterPick) {
 				userScore += 80
 				ppr -= 80
 			}
-			if (r4pick !== r4masterPick) {
-				ppr -= 80
-				if (r4pick === r2pick1) {
-					ppr -= 160
-				}
-				if (r4pick === r2pick2) {
-					ppr -= 80
+
+			if (game === 'g4_1') {
+				if (r4pick !== r4masterPick) {
+					if (ppr4 !== true) {
+						ppr -= 80
+						ppr4_1 = true
+					}
+					if (r4pick === r2pick1 && ppr21 !== true) {
+						ppr -= 160
+						ppr2_1 = true
+					}
+					if (r4pick === r2pick2 && ppr22 !== true) {
+						ppr -= 80
+						ppr2_2 = true
+					}
 				}
 			}
+
+			if (game === 'g4_2') {
+				if (r4pick !== r4masterPick) {
+					if (ppr4 !== true) {
+						ppr -= 80
+						ppr4_2 = true
+					}
+					if (r4pick === r2pick1 && ppr21 !== true) {
+						ppr -= 160
+						ppr2_1 = true
+					}
+					if (r4pick === r2pick2 && ppr22 !== true) {
+						ppr -= 80
+						ppr2_2 = true
+					}
+				}
+			}
+
 		}
 	}
 
-	const r22Scoring = (r2pick2, r22masterPick) => {
+	const r22Scoring = (r2pick2, r22masterPick, ppr22, game) => {
 		if (r22masterPick !== 0) {
 			if (r2pick2 === r22masterPick) {
 				userScore += 80
 				ppr -= 80
 			}
-			if (r2pick2 !== r22masterPick) {
-				ppr -= 80
+			if (game === 'g2_2') {
+				if (r2pick2 !== r22masterPick && ppr22 !== true) {
+					ppr -= 80
+					ppr2_2 = true
+				}
 			}
 		}
 	}
 
-	const r21Scoring = (r2pick1, r21masterPick) => {
+
+	const r21Scoring = (r2pick1, r21masterPick, ppr21, game) => {
 		if (r21masterPick !== 0) {
 			if (r2pick1 === r21masterPick) {
 				userScore += 160
 				ppr -= 160
 			}
-			if (r2pick1 !== r21masterPick) {
-				ppr -= 160
+			if (game === 'g2_1') {
+				if (r2pick1 !== r21masterPick && ppr21 !== true) {
+					ppr -= 160
+					ppr2_1 = true
+				}
 			}
 		}
 	}
 	groupScoring(bracket.grp_a_1, bracket.grp_a_2, masterBracket.grp_a_1,
-		masterBracket.grp_a_2)
+		masterBracket.grp_a_2, 'g16_1')
 	groupScoring(bracket.grp_b_1, bracket.grp_b_2, masterBracket.grp_b_1,
-		masterBracket.grp_b_2)
+		masterBracket.grp_b_2, 'g16_2')
 	groupScoring(bracket.grp_c_1, bracket.grp_c_2, masterBracket.grp_c_1,
-		masterBracket.grp_c_2)
+		masterBracket.grp_c_2, 'g16_3')
 	groupScoring(bracket.grp_d_1, bracket.grp_d_2, masterBracket.grp_d_1,
-		masterBracket.grp_d_2)
+		masterBracket.grp_d_2, 'g16_4')
 	groupScoring(bracket.grp_e_1, bracket.grp_e_2, masterBracket.grp_e_1,
-		masterBracket.grp_e_2)
+		masterBracket.grp_e_2, 'g16_5')
 	groupScoring(bracket.grp_f_1, bracket.grp_f_2, masterBracket.grp_f_1,
-		masterBracket.grp_f_2)
+		masterBracket.grp_f_2, 'g16_6')
 	groupScoring(bracket.grp_g_1, bracket.grp_g_2, masterBracket.grp_g_1,
-		masterBracket.grp_g_2)
+		masterBracket.grp_g_2, 'g16_7')
 	groupScoring(bracket.grp_h_1, bracket.grp_h_2, masterBracket.grp_h_1,
-		masterBracket.grp_h_2)
+		masterBracket.grp_h_2, 'g16_8')
 
 	r16Scoring(bracket.r16_1, bracket.r8_1, bracket.r4_1, bracket.r2_1,
 		bracket.r2_2, masterBracket.r16_1)
@@ -229,19 +384,21 @@ const calculateScore = (bracket, masterBracket) => {
 		bracket.r2_2, masterBracket.r16_8)
 
 	r8Scoring(bracket.r8_1, bracket.r4_1, bracket.r2_1, bracket.r2_2,
-		masterBracket.r8_1)
+		masterBracket.r8_1, ppr8_1, ppr4_1, ppr2_1, ppr2_2, 'g8_1')
 	r8Scoring(bracket.r8_2, bracket.r4_1, bracket.r2_1, bracket.r2_2,
-		masterBracket.r8_2)
+		masterBracket.r8_2, ppr8_2, ppr4_1, ppr2_1, ppr2_2, 'g8_2')
 	r8Scoring(bracket.r8_3, bracket.r4_2, bracket.r2_1, bracket.r2_2,
-		masterBracket.r8_3)
+		masterBracket.r8_3, ppr8_3, ppr4_2, ppr2_1, ppr2_2, 'g8_3')
 	r8Scoring(bracket.r8_4, bracket.r4_2, bracket.r2_1, bracket.r2_2,
-		masterBracket.r8_4)
+		masterBracket.r8_4, ppr8_4, ppr4_2, ppr2_1, ppr2_2, 'g8_4')
 
-	r4Scoring(bracket.r4_1, bracket.r2_1, bracket.r2_2, masterBracket.r4_1)
-	r4Scoring(bracket.r4_2, bracket.r2_1, bracket.r2_2, masterBracket.r4_2)
+	r4Scoring(bracket.r4_1, bracket.r2_1, bracket.r2_2, masterBracket.r4_1,
+		ppr4_1, ppr2_1, ppr2_2, 'g4_1')
+	r4Scoring(bracket.r4_2, bracket.r2_1, bracket.r2_2, masterBracket.r4_2,
+		ppr4_2, ppr2_1, ppr2_2, 'g4_2')
 
-	r22Scoring(bracket.r2_2, masterBracket.r2_2)
-	r21Scoring(bracket.r2_1, masterBracket.r2_1)
+	r22Scoring(bracket.r2_2, masterBracket.r2_2, ppr2_2, 'g2_2')
+	r21Scoring(bracket.r2_1, masterBracket.r2_1, ppr2_1, 'g2_1')
 	if (!bracket.r16_1) {
 		ppr = 0
 	}
