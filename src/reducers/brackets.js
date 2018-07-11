@@ -397,11 +397,22 @@ const calculateScore = (bracket, masterBracket) => {
 	r4Scoring(bracket.r4_2, bracket.r2_1, bracket.r2_2, masterBracket.r4_2,
 		ppr4_2, ppr2_1, ppr2_2, 'g4_2')
 
+	if (bracket.r2_2 === 9 ) {
+		ppr -= 80
+		ppr2_2 = true
+	}
+
+	// if (bracket.r2_1 === 25) {
+	// 	ppr -= 160
+	// 	ppr2_1 = true
+	// }
+
 	r22Scoring(bracket.r2_2, masterBracket.r2_2, ppr2_2, 'g2_2')
 	r21Scoring(bracket.r2_1, masterBracket.r2_1, ppr2_1, 'g2_1')
 	if (!bracket.r16_1) {
 		ppr = 0
 	}
+
 	scores.userScore = userScore
 	scores.ppr = ppr
 	return scores
